@@ -5,24 +5,35 @@
 
 \addbibresource{bibliography.bib} % BibTeX bibliography file
 
-\graphicspath{{../../lib/graphics/}}
-\import{../../lib/configuration}{configuration_main.tex}
+\graphicspath{{../../../../latex-lib/skript-lib/graphics/}}
+\import{../../../../latex-lib/skript-lib/configuration}{configuration_main.tex}
 
 \newcommand\titleOne{Einführung in die Programmierung \\ mit der Turtle}
 \newcommand\titleTwo{Imperatives Programmieren}
 \newcommand\titleThree{Grundlagenfach Informatik}
 
+\newcommand\autor{Oliver Probst}
+
+\newcommand\websiteOne{http://iprog.ginf.ch}
+\newcommand\websiteTwo{http://turtle.ginf.ch}
+\newcommand\websiteThree{http://python.ginf.ch}
+\newcommand\websiteFour{https://ide.ginf.ch/pycharm/}
+\newcommand\websiteFive{https://accounts.ginf.ch/jetbrains/}
+
+\newcommand\version{1.1}
+
+
 \begin{document}
 	% Continous numbering of listings
 	\counterwithout{lstlisting}{chapter}
-    \import{../../lib/cover}{first_page.tex}
+    \import{../../../../latex-lib/skript-lib/cover}{first_page.tex}
 
-    \import{../../lib/inhaltsverzeichnis}{inhaltsverzeichnis_main.tex}
+    \import{../../../../latex-lib/skript-lib/inhaltsverzeichnis}{inhaltsverzeichnis_main.tex}
 
     \import{teile}{teile_main.tex}
 
     \import{anhang}{anhang_main.tex}
 
-    \import{../../lib/cover}{last_page.tex}
+    \import{../../../../latex-lib/skript-lib/cover}{last_page.tex}
 
 \end{document}
