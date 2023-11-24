@@ -1,0 +1,179 @@
+% !TEX root = ../../../main.tex
+
+\toggletrue{image}
+\toggletrue{imagehover}
+\chapterimage{loop}
+\chapterimagetitle{\uppercase{Loop}}
+\chapterimageurl{https://xkcd.com/1411/}
+\chapterimagehover{Ugh, today's kids are forgetting the old-fashioned art of absentmindedly reading the same half-page of a book over and over and then letting your attention wander and picking up another book.}
+
+
+\chapter{Schleifen}
+\label{ch:schleifen}
+
+Mit einer \textbf{Schleife} kann Python die Wiederholung von Befehlen direkt übernehmen, ohne dass wir die Befehle mehrmals eintippen müssen. Die Lernziele für dieses Kapitel sind:\\
+
+\lernziel{\autoref{ch:schleifen}, \nameref{ch:schleifen}}{
+\begin{minipage}{\linewidth}
+$\square$ \hspace{0.1cm} Sie verwenden eine \lstinline[language={python3}]{for}-Schleife, um Befehle wiederholt auszuführen.\\
+$\square$ \hspace{0.1cm} Sie setzen die \lstinline[language={python3}]{range}-Funktion im Schleifenkopf ein.\\
+$\square$ \hspace{0.1cm} Sie verwenden \lstinline[language={python3}]{import}-Aliasing für eine noch kompaktere Notation.
+\end{minipage}
+}
+
+\section{Quadrat ultra kompakt}
+\label{sec:quadrat-ultra-kompakt}
+
+Die bisherigen \say{Turtle-Programme} waren meist sehr repetitiv. Schon im Programm für das Quadrat der Seitenlänge $100$ (\autoref{lst:quadrat}) wiederholen sich die Funktionsaufrufe \lstinline[language={python3}]{fd(100)} und \lstinline[language={python3}]{lt(90)} jeweils viermal. Wir können nun ein Programm in Python erstellen (siehe \autoref{lst:for-loop-quad}), um diese beiden Funktionsaufrufe durch Python viermal wiederholen zu lassen.
+
+\begin{lstlisting}[language={python3}, caption={Die Zeilen \num{4} und \num{5} werden jeweils viermal ausgeführt (\graybgtexttt{quadrat\_loop.py}).}, label={lst:for-loop-quad}, lineskip={4.0pt}]
+import turtle
+
+for _ in [0, 1, 2, 3]:
+	turtle.fd(100)
+	turtle.lt(90)
+turtle.done()
+
+\end{lstlisting}
+
+\vspace{-0.7cm}
+
+\begin{hinweis}
+Das Zeichen \lstinline[language={python3}]{	} soll verdeutlichen, dass hier eine Einrückung mit der \textbf{Tabulatortaste} (kurz: \textbf{Tab}) erfolgen \textbf{muss}.
+\end{hinweis}
+
+\vspace{-0.25cm}
+
+Die \lstinline[language={python3}]{for}-Schleife besteht aus zwei Teilen (Schleifenkopf und Schleifenkörper):
+
+\begin{itemize}
+\item \textbf{Schleifenkopf}: \lstinline[language={python3}]{for} und \lstinline[language={python3}]{in} sind Python-Schlüsselwörter und wir müssen diese exakt so notieren. Dazwischen notieren wir einen \textbf{Underscore} (Unterstrich/Bodenstrich). Danach notieren wir in den \textbf{eckigen Klammern} so viele Werte, wie Wiederholungen durchgeführt werden sollen. Den Schleifenkopf beenden wir mit einem \textbf{Doppelpunkt}.
+\end{itemize}
+
+\begin{example}
+In \autoref{lst:for-loop-quad} befindet sich der Schleifenkopf in Zeile \num{3}. In den eckigen Klammern stehen vier Werte, es werden also vier Wiederholungen durchgeführt, wenn wir das Programm ausführen.
+\end{example}
+
+\begin{itemize}
+\item \textbf{Schleifenkörper}: In diesem Schleifenteil notieren wir die Befehle, die wiederholt ausgeführt werden sollen. Diese Befehle müssen wir gleichmässig \textbf{einrücken}. Alle eingerückten Befehle müssen den gleichen Abstand zum \say{Rand} haben. Die Einrückung dient \textbf{nicht} der optischen \say{Verschönerung}. Nur durch die Einrückung (engl. indentation) weiss Python, welche Befehle wiederholt werden müssen. Die eingerückten Befehle bilden den Schleifenkörper.
+\end{itemize}
+
+\begin{example}
+In \autoref{lst:for-loop-quad} bilden die Zeilen \num{4} und \num{5} den Schleifenkörper, da diese Zeilen eingerückt sind. Die Zeile \num{6} gehört nicht mehr dazu, da sie nicht mehr eingerückt ist.
+\end{example}
+
+\cleancoderegel{\autoref{ch:schleifen}, \nameref{ch:schleifen}}{
+\begin{cleancode}[Leerzeichen 3]
+In den \textbf{eckigen Klammern} wird \textbf{nach} jedem \textbf{Komma} ein \textbf{Leerzeichen} eingefügt.
+\end{cleancode}
+}
+
+\section{Typische Fehlerquellen}
+
+Bei der Programmierung ist auf die folgenden typischen Fehler zu achten:
+
+\begin{itemize}
+\item Schlüsselwörter falsch geschrieben.
+\item Doppelpunkt am Ende des Schleifenkopfs vergessen.
+\item Schleifenkörper ist falsch eingerückt.
+\end{itemize}
+\autoref{lst:for-loop-quad-errors} zeigt ein fehlerhaftes Programm mit \textbf{drei Fehlern}. In Zeile \num{3} ist das Schlüsselwort \lstinline[language={python3}]{IN} falsch geschrieben und der Doppelpunkt am Ende der Zeile fehlt. In Zeile \num{5} ist die Einrückung falsch. Der Befehl muss um ein Leerzeichen nach rechts eingerückt werden (oder noch besser: Tabulatortaste verwenden).
+
+\begin{lstlisting}[language={python3}, caption={Achtung, dies ist ein \textbf{fehlerhaftes} Programm.}, label={lst:for-loop-quad-errors}]
+import turtle
+
+for _ IN [0, 1, 2, 3]
+	turtle.fd(100)
+   turtle.lt(90)
+turtle.done()
+
+\end{lstlisting}
+
+\cleancoderegel{\autoref{ch:schleifen}, \nameref{ch:schleifen}}{
+\begin{cleancode}[Einrückung 1]
+Die Einrückung (engl. indentation) des \textbf{Schleifenkörpers} erfolgt mit der Tabulatortaste.
+\end{cleancode}
+}
+
+\cleancoderegel{\autoref{ch:schleifen}, \nameref{ch:schleifen}}{
+\begin{cleancode}[Leerzeichen 4]
+Nach dem Schlüsselwort \lstinline[language={python3}]{in} (im Schleifenkopf) fügen wir \textbf{ein Leerzeichen} ein.
+\end{cleancode}
+}
+
+\section{\lstinline[language={python3}]{range}-Funktion}
+\label{sec:range-Funktion}
+
+Wir können den Schleifenkopf etwas kompakter gestalten, indem wir die eckigen Klammern samt Inhalt durch einen \lstinline[language={python3}]{range}-Funktionsaufruf ersetzen. \autoref{lst:for-loop-quad-range} zeigt die Verwendung der \textbf{eingebauten Funktion}. Wir können uns den Funktionsaufruf so vorstellen, als würden wir in den eckigen Klammern die Zahlen $0$, $1$, $2$ und $3$ notieren (siehe \autoref{lst:for-loop-quad-range-comparison}).
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{lstlisting}[language={python3}, caption={Eingangsbeispiel}, label={lst:for-loop-quad-range-comparison}]
+import turtle
+
+for _ in [0, 1, 2, 3]:
+	turtle.fd(100)
+	turtle.lt(90)
+turtle.done()
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{lstlisting}[language={python3}, caption={Erste Verbesserung.}, label={lst:for-loop-quad-range}]
+import turtle
+
+for _ in range(4):
+	turtle.fd(100)
+	turtle.lt(90)
+turtle.done()
+\end{lstlisting}
+\end{minipage}
+
+\end{figure}
+
+\begin{important}
+Der Funktionsaufruf von \lstinline[language={python3}]{range} erfolgt \textbf{ohne} ein davor notierter Modulname. Wir müssen auch kein Modul importieren, um den Funktionsaufruf einzusetzen. \lstinline[language={python3}]{range} ist eine \textbf{eingebaute Funktion (eng. built-in function)}. Diese Funktionsaufrufe sind \textbf{immer} und \textbf{überall} (ohne Import) durchführbar.
+\end{important}
+
+\section{\lstinline[language={python3}]{import}-Aliasing}
+\label{sec:import-aliasing}
+
+Unsere Programme werden noch kompakter, wenn wir bei \lstinline[language={python3}]{import}-Anweisungen einen Alias (dt. Parallelbezeichnung) verwenden. Dadurch müssen wir nicht jedes Mal den vollständigen Modulnamen verwenden, sondern den von uns gewählten Alias.
+
+\begin{example}
+\autoref{lst:import-alias} zeigt ein Beispiel mit einem \lstinline[language={python3}]{import}-Alias.
+
+\begin{lstlisting}[language={python3}, caption={\protect\lstset{language=python3} Das Turtle-Modul erhält in Zeile $1$ die Bezeichnung \lstinline{t}. Danach können wir die Funktionsaufrufe aus diesem Modul nur noch mit dieser Bezeichnung verwenden.}, label={lst:import-alias}]
+import turtle as t
+
+for _ in range(4):
+	t.fd(100)
+	t.lt(90)
+t.done()
+\end{lstlisting}
+\end{example}
+
+\begin{example}
+\autoref{lst:import-alias-bsp} zeigt ein Programm mit zwei \lstinline[language={python3}]{import}-Anweisungen. Pro \lstinline[language={python3}]{import}-Anweisung wird ein \lstinline[language={python3}]{import}-Alias benutzt.
+
+\begin{lstlisting}[language={python3}, caption={\protect\lstset{language=python3} Zwei \lstinline{import}-Anweisungen mit \lstinline{import}-Aliasing.}, label={lst:import-alias-bsp}]
+import turtle as t
+import random as r
+
+a = r.randrange(25, 101)
+for _ in range(4):
+	t.fd(a)
+	t.lt(90)
+t.done()
+\end{lstlisting}
+
+\end{example}
+
+Wir können für \textbf{jeden Modulimport} einen Alias benutzen. Dazu erweitern wir die \lstinline[language={python3}]{import}-Anweisung und verwenden am Ende das Schlüsselwort \lstinline[language={python3}]{as} mit einem gültigen Namen.
+
+\begin{important}
+Zwei \lstinline[language={python3}]{import}-Anweisung dürfen \textbf{nicht} den gleichen Alias besitzen.
+\end{important}

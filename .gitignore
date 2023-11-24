@@ -2,6 +2,12 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,latex
 
 ### LaTeX ###
+
+## Custom
+*.lern
+*.cleancoderegel
+*.xsim
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

@@ -1,0 +1,283 @@
+\toggletrue{image}
+\toggletrue{imagehover}
+\chapterimage{formal_languages}
+\chapterimagetitle{FORMAL LANGUAGES}
+\chapterimageurl{https://xkcd.com/1090/}
+\chapterimagehover{[audience looks around] \say{What just happened?} \say{There must be some context we're missing.}}
+
+\chapter{Syntax und Semantik}
+\label{chapter-syntax-und-semantik}
+
+Ähnlich wie bei einer natürlichen Sprache wird die Grammatik einer Programmiersprache durch ihren Wortschatz, ihre Syntax und ihre Semantik festgelegt. Im Gegensatz zu einer natürlichen Sprache, bei der die Bedeutung und Verwendung einzelner Wörter manchmal ungenau oder mehrdeutig ist, müssen bei einer Programmiersprache alle Spracheigenschaften präzise definiert werden. Die Informatik setzt hierfür formale Sprachen ein.
+
+%\newcommand{\syntaxUndSemantikLernziele}{
+%\protect\begin{todolist}
+%\item Sie definieren den Begriff Wortschatz und geben ein Beispiel.
+%\item Sie erklären den Begriff Syntax an einem Beispiel.
+%\item Sie geben ein Beispiel für einen Syntaxfehler.
+%\item Sie erklären den Begriff Semantik an einem Beispiel.
+%\item Sie geben ein Beispiel für einen Semantikfehler.
+%\end{todolist}
+%}
+%
+%\lernziel{\autoref{chapter-syntax-und-semantik}, \nameref{chapter-syntax-und-semantik}}{\protect\syntaxUndSemantikLernziele}
+
+%\syntaxUndSemantikLernziele
+
+\begin{definition}[Wortschatz]
+Der Wortschatz bildet die Grundlage einer jeden Programmiersprache. Er definiert den Symbolvorrat für die Darstellung von Programmen.
+\end{definition}
+
+\begin{example}[Python]
+Der Wortschatz von Python umfasst zum Beispiel die Schlüsselwörter (\lstinline{import}, \lstinline{for}, \lstinline{def}, \lstinline{in} usw.) und Operatoren (\lstinline{+}, \lstinline{-} usw.).
+\end{example}
+ 
+\section{Syntax}
+
+Die Syntax regelt, welche Symbolfolgen des zugrunde gelegten Wortschatzes zulässige \say{Sätze} (Programme) der Sprache bilden, und legt gleichzeitig zu jeder solchen Symbolfolge eine grammatikalische Struktur fest, ähnlich der Zerlegung von Sätzen natürlicher Sprache in Subjekt, Prädikat und Objekt. In den Sprachwissenschaften bezeichnet die Syntax die Lehre vom Bau des Satzes. Die Syntax gibt somit die Regeln vor, wie man einen korrekten Satz in einer Sprache bildet. Auch beim Programmieren muss festgelegt werden, was ein gültiges Programm ist. 
+
+\begin{definition}[Syntax]
+Die Syntax einer Programmiersprache definiert, was ein korrektes Programm ist.
+\end{definition}
+
+In der Syntax ist definiert, welche Elemente der Programmiersprache wie benutzt werden dürfen. So wie Sie als Mensch nur sinnvoll aufgebaute Sätze verstehen können, versteht ein Computer auch nur Programme, die sinnvoll formuliert sind\footnote{Als Mensch verfügen Sie über Fantasie. Sie können meist auch Sätze entschlüsseln und verstehen, die im Aufbau falsch sind. Ein Rechner ist (noch) fantasielos. Programme müssen fehlerfrei sein, damit der Computer Sie verstehen kann.}.
+
+Nobody is perfect. Wenn wir programmieren, dann passieren Fehler (eng. errors). Ein Tippfehler ist schnell passiert. Meist zeigt die Konsole dann eine \textbf{Fehlermeldung}. Prinzipiell wird ein Python-Programm solange ausgeführt, bis ein Fehler auftritt. Bei einem Fehler hört die Ausführung des Programms sofort auf. \autoref{lst-syntax-error} zeigt ein Programm mit einem Fehler. Wenn wir das Programm ausführen, dann wird eine Fehlermeldung angezeigt.
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}{0.35\linewidth}
+\centering
+\begin{lstlisting}[caption={Programm mit einem Syntaxfehler.}, label=lst-syntax-error, showstringspaces=false]
+import turtle
+
+For i in range(4):
+    turtle.fd(100)
+    turtle.lt(90)
+turtle.done()
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\linewidth}
+\centering
+\begin{lstlisting}[numbers=none, language=, xleftmargin=0.5cm, framexleftmargin=1mm]
+  File "syntax_error.py", line <@3@>
+    For i in range(<@4@>):
+        ^
+SyntaxError: invalid syntax
+
+Process finished with exit code <@1@>
+\end{lstlisting}
+\caption{In Zeile drei gibt es einen \protect\say{Tippfehler}.}
+\label{lst-syntax-error-output}
+\end{minipage}
+\end{figure}
+
+Die Fehlermeldung in \autoref{lst-syntax-error-output} zeigt uns auch den Fehlertyp an. Es handelt sich um einen \textbf{Syntaxfehler} (eng. syntax error). Wir haben das Schlüsselwort \lstinline{for} falsch notiert (\say{F} statt \say{f}). Python versucht durch das \lstinline{^} anzuzeigen, wo der Fehler passiert ist. Meist trifft dies nicht exakt die Position, sondern man muss in der \say{Umgebung} suchen. Im Beispiel zeigt das Symbol auf das \lstinline{i}, obwohl der Fehler davor passiert ist. Zusätzlich wird auch die Zeilennummer angezeigt, in der Python einen Fehler vermutet.\\
+\\
+Ein \textbf{syntaktisch} korrektes Programm ist ein Programm ohne Syntaxfehler.
+
+\begin{important}
+Ein syntaktisch korrektes Programm kann immer noch Fehler beinhalten.
+\end{important}
+
+\subsection{Aufgaben}
+
+Lösen Sie die Aufgaben entweder auf Papier oder in einer Textdatei. Falls Sie die Aufgaben in einer Textdatei lösen, dann verwenden Sie bitte \textbf{pro Aufgabe eine separate Textdatei}. Erstellen Sie einen Ordner \graybgtexttt{b\_syntax\_semantik}. Erstellen Sie darin einen Ordner \graybgtexttt{syntax} und einen Ordner \graybgtexttt{semantik} für die Textdateien.
+
+\subsubsection{Aufgabe 1}
+
+\autoref{lst-syntax-error-ex-1} zeigt ein fehlerhaftes Programm. Beantworten Sie die anschliessenden Fragen.
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}{0.35\linewidth}
+\centering
+\begin{lstlisting}[caption={Das Programm hat einen Syntaxfehler.}, label=lst-syntax-error-ex-1, showstringspaces=false]
+imPort turtle
+
+for i in range(3):
+    turtle.fd(100)
+    turtle.lt(120)
+turtle.done()
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\linewidth}
+\centering
+\begin{lstlisting}[numbers=none, language=, xleftmargin=0.5cm, framexleftmargin=1mm]
+  File "fehler.py", line <@1@>
+    imPort turtle
+                ^
+SyntaxError: invalid syntax
+\end{lstlisting}
+\caption{Fehlermeldung}
+\label{lst-syntax-error-ex-1-output}
+\end{minipage}
+\end{figure}
+
+\textbf{Fragen:}
+
+\begin{enumerate}
+\item In welcher Datei befindet sich der Fehler?
+\item In welcher Zeile befindet sich der Fehler (gemäss Fehlermeldung)?
+\item In welcher Zeile befindet sich der Fehler \say{wirklich}?
+\item Erklären Sie den Fehler und korrigieren Sie den Fehler anschliessend.
+\end{enumerate}
+
+\subsubsection{Aufgabe 2}
+
+\autoref{lst-syntax-error-ex-2} zeigt ein fehlerhaftes Programm. Beantworten Sie die anschliessenden Fragen.
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}{0.35\linewidth}
+\centering
+\begin{lstlisting}[caption={Das Programm hat einen Syntaxfehler.}, label=lst-syntax-error-ex-2, showstringspaces=false]
+import turtle
+
+for i in range(3):
+    turtle.fd(100
+    turtle.lt(120)
+turtle.done()
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\linewidth}
+\centering
+\begin{lstlisting}[numbers=none, language=, xleftmargin=0.5cm, framexleftmargin=1mm]
+  File "dreieck.py", line <@5@>
+    turtle.lt(<@120@>)
+    ^
+SyntaxError: invalid syntax
+\end{lstlisting}
+\caption{Fehlermeldung}
+\label{lst-syntax-error-ex-2-output}
+\end{minipage}
+\end{figure}
+
+\textbf{Fragen:}
+
+\begin{enumerate}
+\item In welcher Datei befindet sich der Fehler?
+\item In welcher Zeile befindet sich der Fehler (gemäss Fehlermeldung)?
+\item In welcher Zeile befindet sich der Fehler \say{wirklich}?
+\item Erklären Sie den Fehler und korrigieren Sie den Fehler anschliessend.
+\end{enumerate}
+
+\subsubsection{Aufgabe 3}
+
+\autoref{lst-syntax-error-ex-3} zeigt ein fehlerhaftes Programm. Beantworten Sie die anschliessenden Fragen.
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}{0.35\linewidth}
+\centering
+\begin{lstlisting}[caption={Das Programm hat zwei Syntaxfehler.}, label=lst-syntax-error-ex-3, showstringspaces=false]
+a = 10
+b = 5 2
+c = 10 - - 5
+print (a b c)
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\linewidth}
+\centering
+\begin{lstlisting}[numbers=none, language=, xleftmargin=0.5cm, framexleftmargin=1mm]
+  File "scratch_<@1@>.py", line <@2@>
+    b = <@5@> <@2@>
+          ^
+SyntaxError: invalid syntax
+\end{lstlisting}
+\caption{Fehlermeldung}
+\label{lst-syntax-error-ex-3-output}
+\end{minipage}
+\end{figure}
+
+\textbf{Fragen:}
+
+\begin{enumerate}
+\item In welcher Datei befinden sich die Fehler?
+\item In welcher Zeile befinden sich die Fehler (gemäss Fehlermeldung)?
+\item Wie viele Fehler werden angezeigt? Warum?
+\item Erklären Sie die Fehler und korrigieren Sie die Fehler anschliessend.
+\end{enumerate}
+
+\section{Semantik}
+
+Die Semantik beschreibt die Bedeutung der einzelnen Sprachelemente und die Beziehungen zwischen ihnen. Dadurch wird die Bedeutung eines Programms festgelegt. Im Sinne der Datenverarbeitung sagt die Bedeutung etwas darüber aus, wie die eingegebenen Daten verarbeitet bzw. welche Daten als Ergebnisse ausgegeben werden. Semantische Regeln besagen zum Beispiel, dass eine vereinbarte Grösse (etwa eine Variable oder eine Funktion) danach nur mit dieser Bedeutung verwendet werden darf, dass vordefinierte Funktion nur auf ganz bestimmte Argumenttypen angewendet werden dürfen oder dass eine Variable vor ihrer Verwendung einen bestimmten Wert haben muss.
+
+\begin{definition}[Semantik]
+Die Bedeutung eines Programms bezeichnen wir mit der Semantik. Wenn man der Semantik eines Programms gefragt wird, dann möchte man wissen, welche Aufgabe das Programm erledigt. Die Antwort auf die Frage \say{Wie verhält sich das Programm, wenn man es ausführt?} stellt die Semantik eines Programms dar.
+\end{definition}
+
+\begin{example}[Semantik]
+Wenn wir das Programm aus \autoref{lst-quadrat} ausführen, dann wird ein Quadrat mit der Seitenlänge $100$ gezeichnet.
+\end{example}
+
+In der Programmierung können wir ein syntaktisch korrektes Programm verfassen, jedoch kann es immer noch einen Semantikfehler besitzen. Meist spricht man auch von einem \textit{Logikfehler}. Das Programm in \autoref{lst-semantics-error} soll den Nachlass in Prozent berechnen. Es hat jedoch einen Semantikfehler.
+
+\begin{lstlisting}[caption={Programm mit einem Semantikfehler.}, label=lst-semantics-error, showstringspaces=false]
+preis = float(input("Originalpreis CHF: "))
+rabatt = float(input("Rabatt CHF: "))
+nachlass_in_prozent = rabatt / preis
+print("Nachlass in Prozent:", nachlass_in_prozent, "%")
+neuer_preis = preis - rabatt
+print("Neuer Preis: CHF", neuer_preis, "CHF")
+\end{lstlisting}
+
+Es wird fehlerfrei ausgeführt, jedoch wird der Nachlass \textbf{nicht} in Prozent angezeigt. Der Programmierer hat vergessen in Zeile drei eine Multiplikation mit $100$ durchzuführen. Semantikfehler werden von Python nicht angezeigt. Wir müssen das Programm selbst studieren und den Fehler finden und korrigieren.
+
+\begin{definition}[Bug]
+Ein Programm, welches einen Fehler besitzt (egal ob Syntax- oder Semantikfehler), bezeichnet man als \say{buggy}. Man sagt auch, das Programm hat einen Bug (eng. Ungeziefer). Der Begriff wird in der Informatik gerne für einen Fehler in einem Software-Programm verwendet.
+\end{definition}
+
+\subsection{Aufgaben}
+
+Lösen Sie die Aufgaben entweder auf Papier oder in einer Textdatei. Falls Sie die Aufgaben in einer Textdatei lösen, dann verwenden Sie bitte \textbf{pro Aufgabe eine separate Textdatei}. Erstellen Sie die Textdateien im Ordner \graybgtexttt{semantik}.
+
+\subsubsection{Aufgabe 4}
+
+\autoref{lst-syntax-error-ex-4} zeigt ein fehlerhaftes Programm. Beantworten Sie die anschliessenden Fragen.
+
+\begin{lstlisting}[caption={Das Programm hat einen Semantikfehler.}, label=lst-syntax-error-ex-4, showstringspaces=false]
+import turtle
+
+for k in [1, 2, 3]:
+    turtle.fd(100)
+    turtle.lt(120)
+turtle.done
+\end{lstlisting}
+
+Olaf möchte ein gleichseitiges Dreieck zeichnen und hat das Programm in \autoref{lst-syntax-error-ex-4} erstellt. Das Programm wird ohne Fehler ausgeführt. Er kann jedoch die Figur nicht in Ruhe betrachten, da Sie nur kurz angezeigt wird und dann wieder verschwindet. Helfen Sie Olaf und finden Sie den Fehler.\\
+
+\textbf{Fragen:}
+
+\begin{enumerate}
+\item In welcher Zeile befindet sich der Fehler?
+\item Erklären Sie den Fehler und korrigieren Sie den Fehler anschliessend.
+\end{enumerate}
+
+\newpage
+
+\subsubsection{Aufgabe 5}
+
+\autoref{lst-syntax-error-ex-5} zeigt ein fehlerhaftes Programm. Beantworten Sie die anschliessenden Fragen.
+
+\begin{lstlisting}[caption={Das Programm hat einen Semantikfehler.}, label=lst-syntax-error-ex-5, showstringspaces=false]
+import turtle
+
+for seite in range(1, 6):
+    turtle.fd(100)
+    turtle.lt(60)
+turtle.done()
+\end{lstlisting}
+
+Olaf möchte ein regelmässiges $6$-Eck zeichnen und hat das Programm in \autoref{lst-syntax-error-ex-5} erstellt. Das Programm wird ohne Fehler ausgeführt. Jedoch wird das Sechseck nicht vollständig angezeigt. Helfen Sie Olaf und finden Sie den Fehler.\\
+
+\textbf{Fragen:}
+
+\begin{enumerate}
+\item In welcher Zeile befindet sich der Fehler?
+\item Erklären Sie den Fehler und korrigieren Sie den Fehler anschliessend.
+\end{enumerate}

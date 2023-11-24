@@ -1,0 +1,55 @@
+% !TEX root = ../../../main.tex
+
+\toggletrue{image}
+\toggletrue{imagehover}
+\chapterimage{twitter_bot}
+\chapterimagetitle{\uppercase{Twitter Bot}}
+\chapterimageurl{https://xkcd.com/1646/}
+\chapterimagehover{PYTHON FLAG ENABLE THREE LAWS.}
+
+
+\chapter{Was ist Programmieren?}
+\label{ch:was-ist-programmieren}
+
+Was bedeutet Programmieren? \textbf{Programmieren} heisst, mit dem Computer zu kommunizieren.
+Wir teilen dem Computer mit, was er zu tun hat und zwar in einer Sprache, die er versteht.
+Sprachen, die der Computer versteht, nennen wir \textbf{Programmiersprachen}.
+Wie jede natürliche Sprache besteht auch eine Programmiersprache aus Wörtern, die eine bestimmte Bedeutung haben.
+Wir verwenden eine Programmiersprache, um dem Computer Anweisungen zu geben.
+Deshalb nennen wir die Wörter einer Programmiersprache \textbf{Computerbefehle} oder kurz \textbf{Befehle}.
+Manchmal wird auch das Wort \textbf{Instruktion} verwendet. Ein \textbf{Programm} besteht aus einer Reihe von Befehlen einer Programmiersprache.
+Das Ziel des Programmierens ist es, eine Tätigkeit zu \textbf{automatisieren}.
+Das bedeutet, dass wir die Ausübung einer Tätigkeit komplett dem Computer überlassen. \cite{einfach-informatik-programmieren}
+
+\begin{definition}[Imperatives Programmieren]
+    Beim imperativen Programmieren beschreibt das Programm, \textbf{wie} wir mit Computerbefehlen ein gewünschtes Ziel erreichen.
+    Im Fokus steht die korrekte Reihenfolge der Befehle, um das Ziel schrittweise zu erreichen.
+\end{definition}
+
+In diesem Skript erlernen Sie die Grundlagen der imperativen Programmierung.
+Wir verwenden dazu die Programmiersprache \textbf{Python} (\autoref{fig:python-logo}) in der Version 3.\footnote{Es gibt auch Python in der Version 2.}
+
+\begin{figure}[htb]
+    \centering
+    \begin{minipage}[b][][b]{0.4\textwidth}
+        \centering
+        \includegraphics[scale=0.3]{python-logo}
+        \caption{Das Python-Logo.\protect\footnotemark}
+        \label{fig:python-logo}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b][][b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.4]{turtle-star}
+        \caption{Beispiel für eine Turtle-Grafik.\protect\footnotemark}
+        \label{fig:turtle-graphic-beispiel}
+    \end{minipage}
+\end{figure}
+
+\footnotetext{Bildquelle: \url{https://www.python.org/community/logos/}}
+\footnotetext{Bildquelle: Screenshot des Programms.}
+
+Um die Programmiergrundlagen zu erlernen, greifen wir auf das \textbf{Turtle-Modul} von Python zurück.
+Mit diesem Modul bewegen wir eine Schildkröte (Turtle) mit einem \say{Stift} über den Bildschirm.
+Wir können mit einem Python-Programm bestimmen, wie sich die Turtle bewegen soll.
+\autoref{fig:turtle-graphic-beispiel} zeigt ein Beispiel einer Grafik, die mit der Turtle erstellt wurde.

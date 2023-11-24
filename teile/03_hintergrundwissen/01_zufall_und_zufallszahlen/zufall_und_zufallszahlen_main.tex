@@ -1,0 +1,79 @@
+% !TEX root = ../../../main.tex
+
+\toggletrue{image}
+\toggletrue{imagehover}
+\chapterimage{random_number}
+\chapterimagetitle{\uppercase{Random Number}}
+\chapterimageurl{https://xkcd.com/221/}
+\chapterimagehover{RFC 1149.5 specifies 4 as the standard IEEE-vetted random number.}
+
+\chapter{Zufall und Zufallszahlen}
+\label{ch:zufall-und-zufallszahlen}
+
+Zufallszahlen werden in der Informatik immer wieder benötigt. Bei der verschlüsselten Kommunikation spielt der Zufall eine wesentliche Rolle, um Nachrichten für unbefugte Empfänger unlesbar zu machen. In Computerspielen kommen Zufallskomponenten vor (z.B. Online-Glücksspiele), um den Spielausgang zu variieren. Simulationen verwenden Zufallskomponenten, um reale Systeme zu modellieren (z.B. Pandemie- oder Verkehrssimulationen). Die Lernziele lauten:\\
+
+\lernziel[\autoref{part:hintergrundwissen}, Hintergrundwissen]{\autoref{ch:zufall-und-zufallszahlen}, \nameref{ch:zufall-und-zufallszahlen}}{
+\begin{minipage}{\linewidth}
+$\square$ \hspace{0.1cm} Sie definieren den Begriff Zufall aus einer theoretischer Sicht.\\
+$\square$ \hspace{0.1cm} Sie definieren den Begriff Zufall aus einer praktischer Sicht.\\
+$\square$ \hspace{0.1cm} Sie stellen echte Zufallszahlen und Pseudo-Zufallszahlen gegenüber.
+\end{minipage}
+}
+
+\section{Was ist Zufall?}
+
+Es gibt verschiedene Sichtweisen des Zufalls. Die erste Sicht formulieren wir wie folgt:
+
+\begin{definition}[Zufall in der Theorie]
+Der Zufall ist die Unmöglichkeit, einen Wert im Voraus zu berechnen.
+\end{definition}
+
+\begin{example}
+In der Zukunft wird eine Karte mit einer Zahl aufgedeckt. Wenn wir den Wert dieser zukünftigen Zahl nicht aus den uns heute zur Verfügung stehenden Informationen berechnen können, dann ist die Zahl zufällig.
+\end{example}
+
+Auch die Philosophie spielt beim Zufall eine Rolle: Ist ein Münzwurf wirklich zufällig oder wäre es theoretisch möglich, das Ergebnis mit genügend Daten über die Umgebung (Temperatur, Windstärke, Wurfhöhe, \dots) vorherzusagen?
+
+Vielleicht ist die Definition etwas zu streng. Wir wählen einen pragmatischeren Ansatz und beschränken uns auf die vorhandenen und bekannten Berechnungsmittel. Damit umgehen wir die grundsätzliche Frage, ob es Zufall gibt oder nicht. Wir sind im Prinzip an den Anwendungen des Zufalls interessiert und nicht daran, den Zufall grundsätzlich in Frage zu stellen.
+
+\begin{definition}[Zufall in der Praxis]
+Eine Zahl ist zufällig, wenn sie mit den uns zur Verfügung stehenden Mitteln nicht berechnet werden kann.
+\end{definition}
+
+Für den Informatiker ergibt sich ein Dilemma: Der Computer ist eine Maschine in der alles \textit{berechnet} wird\footnote{Der Begriff Computer leitet sich aus \say{to compute} (dt. rechnen, berechnen) ab. Im deutschen Sprachraum wird auch häufig der Begriff Rechner für Computer verwendet.}. \textbf{Wie kann ein Computer (eine Rechenmaschine) überhaupt nicht berechenbare Zahlen erzeugen?}
+
+\section{Pseudozufallszahlen}
+
+Für viele Zwecke müssen die Zahlen gar nicht unbedingt wirklich zufällig sein. Es genügt, wenn die Zahlen zufällig wirken; sie können aber auch berechnet sein. Solche berechneten Zahlen, die wie Zufallszahlen aussehen, werden \textbf{Pseudozufallszahlen}\footnote{\say{pseudo} bedeutet ganz allgemein: falsch, täuschend ähnlich, nur so aussehen als ob.} genannt.\\
+
+\begin{definition}[Pseudozufallszahlengenerator]
+Programmiersprachen bieten Funktionen an, um Pseudozufallszahlen zu erzeugen. Eine Funktion, die Pseudozufallszahlen erzeugt, wird als \textbf{Pseudozufallszahlengenerator} bezeichnet. Dieser Generator stellt sicher, dass die Zahlen ausreichend zufällig sind.
+\end{definition}
+
+Hinter den Pseudozufallszahlen steckt also ein Computerprogramm, das die Zahlen nach einem Muster erzeugt. Die Idee ist nun, dass sich das Muster, nach dem die Pseudozufallszahlen erzeugt werden, sich nicht zu schnell wiederholt.
+
+\begin{example}
+Python verwendet für das \lstinline{random}-Modul den Marsenne Twister Pseudozufallszahlengenerator\footnote{Siehe \url{http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html}}. Dieser Pseudozufallszahlengenerator verwendet ein Muster, das sich erst nach $2^{19937}-1$ erzeugten Zahlen wiederholt. $2^{19937}-1$ ist eine Zahl mit $6002$ Ziffern!
+\end{example}
+
+
+\section{Echte Zufallszahlen}
+
+Der Computer kann auch echte Zufallszahlen erzeugen. Dazu hält das Betriebssystem Zufallszahlen bereit, welche meist mithilfe von externen Quellen (Atmospheric Noise\footnote{Die Zufallszahlen von \url{https://www.random.org} werden damit erzeugt. Siehe auch \url{https://www.random.org/randomness/} für eine Erklärung.}, aktuelle Uhrzeit, Bewegungen der Maus durch den Benutzer) erzeugt werden. Echte Zufallszahlen werden meist auch als Startwert für den Pseudozufallszahlengenerator eingesetzt.
+
+\section{Video-Material}
+
+Folgende Videos greifen das Thema der Zufallszahlen nochmals auf und zeigen, wie man mit einer radioaktiven Quelle echte Zufallszahlen erzeugen kann.
+
+\begin{enumerate}
+\item Random Numbers - Numberphile (Englisch) \\ \url{https://www.youtube.com/watch?v=SxP30euw3-0}
+\item Random Numbers (the next bit) - Numberphile (Englisch, Follow-Up Video) \\ \url{https://www.youtube.com/watch?v=noDSyLzVz2g}
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.1]{croco_doc.jpg}
+\caption{Bei mindestens einem Zahn schnappt das Krokodil\protect\footnotemark~zu. Wie funktioniert das? Ist es echt zufällig? YouTube Videos klären auf, wie der scheinbare Zufall erzeugt wird (siehe \protect\url{https://www.youtube.com/watch?v=zRaeqWwT1YA}).}
+\end{figure}
+
+\footnotetext{Bildquelle: \url{https://image.smythstoys.com/zoom/8000220_1.jpg}}

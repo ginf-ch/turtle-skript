@@ -1,0 +1,274 @@
+% !TEX root = ../../../main.tex
+
+\toggletrue{image}
+\toggletrue{imagehover}
+\chapterimage{instructions}
+\chapterimagetitle{\uppercase{Instructions}}
+\chapterimageurl{https://xkcd.com/2601/}
+\chapterimagehover{Happy little turtles.}
+
+
+\chapter{Turtle-Grundlagen}
+\label{ch:turtle-grundlagen}
+
+Am Ende dieses Kapitels werden Sie die grundlegenden Befehle der Turtle-Programmierung anwenden können. Die Lernziele sind:\\
+
+\lernziel{\autoref{ch:turtle-grundlagen}, \nameref{ch:turtle-grundlagen}}{
+\begin{minipage}{\linewidth}
+$\square$ \hspace{0.1cm} Die Turtle eine Anzahl Schritte vorwärts bzw. rückwärts bewegen.\\
+$\square$ \hspace{0.1cm} Die Turtle um einen beliebigen Winkel (in Grad) nach rechts bzw. links drehen.\\
+$\square$ \hspace{0.1cm} Die Turtle in den \protect\say{Wandermodus} bzw. \protect\say{Zeichenmodus} versetzen.\\
+$\square$ \hspace{0.1cm} Das Icon (kleines, ausgefülltes Dreieck) anpassen.\\
+$\square$ \hspace{0.1cm} Sie analysieren ein gegebenes Programm und erklären \protect\say{was das Programm macht}.\\
+$\square$ \hspace{0.1cm} Sie erstellen ein Programm, welches eine gegebene geometrische Figur zeichnet.\\
+$\square$ \hspace{0.1cm} Sie erkennen Programmierfehler und korrigieren diese selbstständig.\\
+$\square$ \hspace{0.1cm} Sie wenden die Regeln für einen guten Programmierstil an.
+\end{minipage}
+}
+
+\section{Erste Schritte mit der Turtle}
+\label{sec:erste-schritte-mit-der-turtle}
+
+Wir besprechen nun die grundlegenden Konzepte.
+
+\begin{hinweis}
+    Die Turtle befindet sich zu Beginn in der Mitte des Fensters und schaut nach \textbf{rechts}.
+    Die Turtle befindet sich zu Beginn immer im \textbf{Zeichenmodus}.
+    Wenn sich die Turtle im Zeichenmodus befindet, hat sie einen Stift und zeichnet ihren Weg.
+    Dies geschieht nur, wenn sich die Turtle vorwärts oder rückwärts bewegt.
+\end{hinweis}
+
+\begin{figure}[htb]
+    \centering
+    \fbox{
+        \begin{minipage}[c][4cm]{4cm}
+            \centering
+            \begin{tikzpicture}
+                \node[inner sep=0pt] (turtle) at (0, 0) {\includegraphics[width=.2\textwidth]{turtle}};
+            \end{tikzpicture}
+            \caption*{\lstinline[language={python3}]{shape("turtle")}}
+        \end{minipage}
+    }
+    \hfill
+    \fbox{
+        \begin{minipage}[c][4cm]{4cm}
+            \centering
+            \begin{tikzpicture}
+                \node (startlabel) at (1,1) {Start};
+                \coordinate (start) at (0,0);
+                \coordinate (end) at (3,0);
+                \node[inner sep=0pt] (turtle) at (end) {\includegraphics[width=.2\textwidth]{turtle}};
+                \begin{scope}[on background layer]
+                    \draw[thick] (start)  -- (end);
+                \end{scope}
+                \draw[-{Latex[width=2mm]}, shorten >= 0.1cm] (startlabel) -- (start);
+                \draw[thick,decorate,decoration={brace,amplitude=12pt}] ([yshift=-0.3cm]end) -- ([yshift=-0.3cm]start) node[midway,yshift=-0.75cm]{$100$};
+            \end{tikzpicture}
+            \caption*{\lstinline[language={python3}]{forward(100)}}
+        \end{minipage}
+    }
+    \hfill
+    \fbox{
+        \begin{minipage}[c][4cm]{4cm}
+            \centering
+            \begin{tikzpicture}
+                \node (startlabel) at (-1,1) {Start};
+                \coordinate (start) at (0,0);
+                \coordinate (end) at (-3,0);
+                \node[inner sep=0pt] (turtle) at (end) {\includegraphics[width=.2\textwidth]{turtle}};
+                \begin{scope}[on background layer]
+                    \draw[thick] (start)  -- (end);
+                \end{scope}
+                \draw[-{Latex[width=2mm]}, shorten >= 0.1cm] (startlabel) -- (start);
+                \draw[thick,decorate,decoration={brace,mirror,amplitude=12pt}] ([yshift=-0.3cm]end) -- ([yshift=-0.3cm]start) node[midway,yshift=-0.75cm]{$100$};
+            \end{tikzpicture}
+            \caption*{\lstinline[language={python3}]{back(100)}}
+        \end{minipage}
+    }
+\end{figure}
+
+Mit \lstinline[language={python3}]{shape("turtle")} können wir das \textbf{Icon} in eine Turtle ändern.
+Dies hat keinen Einfluss auf die Bewegungsabläufe der Turtle.
+Es wird lediglich das Icon ausgetauscht.
+Das Icon ändert sich nur dann, wenn wir es in das Programm einbauen.
+Das Icon ändert sich erst, nachdem die entsprechende Code-Zeile abgearbeitet wurde.
+Mit dem Befehl \lstinline[language={python3}]{forward(distance)} bewegt sich die Turtle um \lstinline[language={python3}]{distance} Schritte vorwärts.
+Dabei läuft sie in \textbf{Blickrichtung}.
+Der Befehl \lstinline[language={python3}]{back(distance)} bewirkt das Gegenteil.
+Die Turtle bewegt sich um \lstinline[language={python3}]{distance} Schritte rückwärts.
+Sie läuft \textbf{entgegen} der \textbf{Blickrichtung}.
+Die Anzahl der \say{Schritte} können wir frei wählen.
+
+\begin{figure}[htb]
+    \centering
+    \fbox{
+        \begin{minipage}[c][4cm]{4cm}
+            \centering
+            \begin{tikzpicture}
+                \node[inner sep=0pt] (turtle) at (0, 0) {\includegraphics[width=.2\textwidth]{turtle}};
+                \fill[red] (0,0) circle (2pt);
+            \end{tikzpicture}
+            \caption*{Startposition}
+        \end{minipage}
+    }
+    \hfill
+    \fbox{
+        \begin{minipage}[c][4cm]{4cm}
+            \centering
+            \begin{tikzpicture}
+                \coordinate (start) at (0,0);
+                \coordinate (mid) at (1.5,0);
+                \coordinate (end) at (0,1.5);
+                \coordinate (labelcoordinate) at (1.5,1);
+                \node[inner sep=0pt, rotate=90] (turtle) at (start) {\includegraphics[width=.2\textwidth]{turtle}};
+                \fill[red] (start) circle (2pt);
+                \pic [draw, -{Latex[width=2mm]}, angle radius = 1cm] {angle = mid--start--end};
+                \node (degreelabel) at (labelcoordinate) {$\qty{90}{\degree}$};
+                \draw[dashed, thin] (start) -- (end);
+                \draw[dashed, thin] (start) -- (mid);
+            \end{tikzpicture}
+            \caption*{\lstinline[language={python3}]{left(90)}}
+        \end{minipage}
+    }
+    \hfill
+    \fbox{
+        \begin{minipage}[c][4cm]{4cm}
+            \centering
+            \begin{tikzpicture}
+                \coordinate (start) at (0,0);
+                \coordinate (mid) at (1.5,0);
+                \coordinate (end) at (0,-1.5);
+                \coordinate (labelcoordinate) at (1.5,-1);
+                \node[inner sep=0pt, rotate=-90] (turtle) at (start) {\includegraphics[width=.2\textwidth]{turtle}};
+                \fill[red] (start) circle (2pt);
+                \pic [draw, {Latex[width=2mm]}-, angle radius = 1cm] {angle = end--start--mid};
+                \node (degreelabel) at (labelcoordinate) {$\qty{90}{\degree}$};
+                \draw[dashed, thin] (start) -- (end);
+                \draw[dashed, thin] (start) -- (mid);
+            \end{tikzpicture}
+            \caption*{\lstinline[language={python3}]{right(90)}}
+        \end{minipage}
+    }
+\end{figure}
+
+Mit \lstinline[language={python3}]{right(angle)} können wir die Turtle um \lstinline[language={python3}]{angle} Grad nach \textbf{rechts} drehen.
+Den Befehl \lstinline[language={python3}]{left(angle)} können wir gleichermassen für eine Linksdrehung verwenden.
+Die Turtle dreht sich dabei um \lstinline[language={python3}]{angle} Grad nach \textbf{links}.
+Die Drehung der Turtle bezieht sich \textbf{immer} auf die aktuelle Blickrichtung der Turtle.\footnote{Manchmal hilft folgender \say{Trick}: Versetzen Sie sich in die Turtle und führen Sie dann die Drehung aus.}
+Den Winkel können wir frei wählen.
+Die Drehung bewegt die Turtle weder vorwärts noch rückwärts - es wird \textbf{nichts} gezeichnet.
+Prinzipiell können die Befehle zum Bewegen und Drehen beliebig oft und mit unterschiedlichen Zahlen in einem Programm verwendet werden.
+
+\begin{example}
+
+    Das \autoref{lst:basics-bsp-1} zeigt, wie wir die Turtle mit mehreren Befehlen mehrfach bewegen und drehen können.
+    In \autoref{fig:basics-bsp-1} ist das Ergebnis grafisch dargestellt.
+
+    \begin{figure}[htb]
+        \centering
+        \begin{minipage}{0.5\linewidth}
+            \centering
+            \begin{lstlisting}[language={python3}, caption={Beispielprogramm, welches die Figur aus \autoref{fig:basics-bsp-1} zeichnet (\graybgtexttt{bsp\_1.py}).}, label={lst:basics-bsp-1}]
+import turtle
+
+turtle.shape("turtle")
+turtle.left(90)
+turtle.forward(50)
+turtle.right(90)
+turtle.forward(100)
+turtle.right(135)
+turtle.forward(100)
+turtle.done()
+
+\end{lstlisting}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.4\linewidth}
+        \centering
+        \begin{tikzpicture}
+            \draw[thick] (0,0) -- ++(0, 1cm) -- ++(2cm, 0) -- ++(-135:2cm) node (end) {};
+            \node[inner sep=0pt, rotate=-135] (turtle) at (end) {\includegraphics[width=.15\textwidth]{turtle}};
+        \end{tikzpicture}
+        \caption{Resultat, wenn wir das Programm aus \autoref{lst:basics-bsp-1} ausführen.}
+        \label{fig:basics-bsp-1}
+    \end{minipage}
+\end{figure}
+
+\end{example}
+
+\section{Programmausführung und Clean Code}
+
+Zuerst erklären wir, wie ein Python-Programm vom Computer ausgeführt wird, und gehen dann auf den Programmierstil ein.
+
+\begin{definition}[Programmausführung]
+Ein Python-Programm wird von \textbf{oben} nach \textbf{unten} ausgeführt. Der Computer liest Zeile für Zeile des Programms und führt nacheinander die entsprechenden Befehle aus. Bei einer Leerzeile passiert \say{nichts}. Es gibt Befehle, die Code-Zeilen überspringen oder zu einer vorherigen Code-Zeile zurückgehen.
+\end{definition}
+
+Python führt also ein Programm immer ab Zeile 1 aus.
+Damit Programme übersichtlich und leserlich bleiben, werden bei der Software-Entwicklung bestimmte Regeln vereinbart.
+Typischerweise halten sich \textbf{alle} in einem Team an diese Regeln.
+Wenn wir gegenseitig Code austauschen und betrachten, finden sich so alle auf Anhieb zurecht.
+Ausserdem sollen die Regeln aufzeigen, wie wir unseren Programmierstil verbessern und dadurch verständlichere Programme erstellen können.
+Wir fassen diese Regeln unter dem Begriff \textbf{Clean Code} zusammen.\footnote{Wikipedia fasst den Begriff \say{perfekt} zusammen: \url{https://de.wikipedia.org/wiki/Clean_Code}} Die ersten Regeln sind:
+
+\cleancoderegel{\autoref{ch:turtle-grundlagen}, \nameref{ch:turtle-grundlagen}}{
+\begin{cleancode}[Ein Befehl pro Zeile]
+Wir notieren \textbf{einen} Befehl pro Zeile.
+\end{cleancode}
+}
+
+\cleancoderegel{\autoref{ch:turtle-grundlagen}, \nameref{ch:turtle-grundlagen}}{
+\begin{cleancode}[\texttt{import}-Befehle an den Anfang der Python-Datei]
+\textbf{Alle} \lstinline[language={python3}]{import}-Befehle werden in den ersten Zeilen der Python-Datei notiert.
+Nach dem letzten \lstinline[language={python3}]{import}-Befehl fügen wir eine \textbf{Leerzeile} ein.
+\end{cleancode}
+}
+
+\cleancoderegel{\autoref{ch:turtle-grundlagen}, \nameref{ch:turtle-grundlagen}}{
+\begin{cleancode}[Leerzeile am Ende]
+Wir notieren am \textbf{Ende des Programms} eine \textbf{Leerzeile}.
+Jede Python-Datei enthält also als letzte Code-Zeile eine leere Zeile.
+\end{cleancode}
+}
+
+\section{Wandermodus}
+
+Mit \lstinline[language={python3}]{penup()} bringen wir die Turtle in den \textbf{Wandermodus}.
+Im Wandermodus bewegt sich die Turtle, \textbf{ohne} mit dem Stift zu zeichnen.
+Der Befehl \lstinline[language={python3}]{pendown()} bringt die Turtle in den \textbf{Zeichenmodus}.
+Im Zeichenmodus hat die Turtle einen Stift und zeichnet.
+
+\begin{example}
+
+\autoref{lst:basics-bsp-2} zeigt, wie wir den Wander- und Zeichenmodus verwenden.
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}{0.5\linewidth}
+\centering
+\begin{lstlisting}[language={python3}, caption={Beispielprogramm, welches die Figur aus \autoref{fig:basics-bsp-2} zeichnet (\graybgtexttt{bsp\_2.py}).}, label={lst:basics-bsp-2}]
+import turtle
+
+turtle.shape("turtle")
+turtle.forward(50)
+turtle.penup()
+turtle.forward(50)
+turtle.pendown()
+turtle.forward(50)
+turtle.done()
+
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\centering
+\begin{tikzpicture}
+\draw[thick] (0,0) -- ++(1cm, 0) ++ (1cm, 0) -- ++ (1cm, 0) node (end) {};
+\node[inner sep=0pt] (turtle) at (end) {\includegraphics[width=.15\textwidth]{turtle}};
+\end{tikzpicture}
+\caption{Resultat, wenn wir das Programm aus \autoref{lst:basics-bsp-2} ausführen.}
+\label{fig:basics-bsp-2}
+\end{minipage}
+\end{figure}
+
+\end{example}

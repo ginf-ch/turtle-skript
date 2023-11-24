@@ -1,0 +1,28 @@
+\documentclass{skript}
+
+% Prüfe PNG Dateien bzgl. Transparenz => sonst schwarzer Hintergrund bei den Bildern
+\pdfminorversion=3
+
+\addbibresource{bibliography.bib} % BibTeX bibliography file
+
+\graphicspath{{../../lib/graphics/}}
+\import{../../lib/configuration}{configuration_main.tex}
+
+\newcommand\titleOne{Einführung in die Programmierung \\ mit der Turtle}
+\newcommand\titleTwo{Imperatives Programmieren}
+\newcommand\titleThree{Grundlagenfach Informatik}
+
+\begin{document}
+	% Continous numbering of listings
+	\counterwithout{lstlisting}{chapter}
+    \import{../../lib/cover}{first_page.tex}
+
+    \import{../../lib/inhaltsverzeichnis}{inhaltsverzeichnis_main.tex}
+
+    \import{teile}{teile_main.tex}
+
+    \import{anhang}{anhang_main.tex}
+
+    \import{../../lib/cover}{last_page.tex}
+
+\end{document}

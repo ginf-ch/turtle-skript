@@ -1,0 +1,118 @@
+% !TEX root = ../../../main.tex
+
+\toggletrue{image}
+\toggletrue{imagehover}
+\chapterimage{wrong_times_table}
+\chapterimagetitle{\uppercase{Wrong Times Table}}
+\chapterimageurl{https://xkcd.com/2313/}
+\chapterimagehover{Deep in some corner of my heart, I suspect that real times tables are wrong about 6x7=42 and 8x7=56.}
+
+\chapter{Rechnen}
+\label{ch:rechnen}
+
+Mit einer Programmiersprache können wir natürlich auch Berechnungen durchführen. Das war schliesslich die ursprüngliche Motivation, Computer\footnote{\say{to compute} kann mit rechnen oder etwas berechnen übersetzt werden. Im deutschen Sprachraum ist auch die Bezeichnung Rechner für den Computer gebräuchlich.} zu bauen. Die Lernziele sind:\\
+
+\lernziel{\autoref{ch:rechnen}, \nameref{ch:rechnen}}{
+\begin{minipage}{\linewidth}
+$\square$ \hspace{0.1cm} Sie erstellen Python-Programme, in denen mit Zahlen gerechnet wird.\\
+$\square$ \hspace{0.1cm} Sie erklären, was ein arithmetischer Operator ist und geben ein Beispiel.\\
+$\square$ \hspace{0.1cm} Sie erklären, was ein arithmetischer Ausdruck ist und geben ein Beispiel.
+\end{minipage}
+}
+
+\vspace{-0.6cm}
+
+\section{Addition, Subtraktion, Multiplikation und Division}
+\label{sec:addition-subtraktion-multiplikation-division-und-potenzierung}
+
+Wie bei einem Taschenrechner gibt es für jede Rechenart ein Zeichen: \textbf{Addition} \lstinline[language={python3}]{+}, \textbf{Subtraktion} \lstinline[language={python3}]{-}, \textbf{Multiplikation} \lstinline[language={python3}]{*} und \textbf{Division} \lstinline[language={python3}]{/}.
+
+\begin{definition}[Arithmetischer Operator]
+Der Fachbegriff für \say{Rechenzeichen} ist arithmetischer Operator und damit werden mathematische Berechnungen notiert.
+\end{definition}
+
+\vspace{-0.2cm}
+
+Die Arithmetik ist ein Teilgebiet der Mathematik und beschreibt das Rechnen mit Zahlen. \autoref{lst:rechteck-1} zeigt ein Beispiel mit einer Multiplikation.
+
+\begin{lstlisting}[language={python3}, label={lst:rechteck-1}, caption={Das Rechteck ist eineinhalbmal so lang wie breit.}]
+import turtle as t
+import random as r
+
+a = r.randrange(100, 151)
+b = 1.5 * a
+for _ in range(2):
+	t.fd(b)
+	t.lt(90)
+	t.fd(a)
+	t.lt(90)
+t.done()
+
+\end{lstlisting}
+
+\vspace{-0.6cm}
+
+\cleancoderegel{\autoref{ch:rechnen}, \nameref{ch:rechnen}}{
+\begin{cleancode}[Leerzeichen 5]
+Links \textbf{und} rechts eines \textbf{arithmetischen Operators} fügen wir jeweils ein \textbf{Leerzeichen} ein.
+\end{cleancode}
+}
+
+\autoref{lst:kreise-1} zeigt ein Beispiel mit einer Division und Subtraktion.
+
+\begin{lstlisting}[language={python3}, label={lst:kreise-1}, caption={Die Anzahl der Kreise und der Radius des grösseren Kreises werden zufällig gewählt.}]
+import random as r
+import turtle as t
+
+anzahl = r.randrange(4, 11)
+drehwinkel = 360 / anzahl
+radius_<@\color{black}{1}@> = r.randrange(30, 51)
+radius_<@\color{black}{2}@> = radius_1 - 10
+t.speed(0)
+for _ in range(anzahl):
+	t.circle(radius_<@\color{black}{1}@>)
+	t.circle(radius_<@\color{black}{2}@>)
+	t.lt(drehwinkel)
+t.done()
+
+\end{lstlisting}
+
+\begin{important}
+Einige Hinweise zu den Berechnungen:
+\begin{itemize}
+\item Wenn Sie \say{Kommazahlen} in Berechnungen verwenden wollen, müssen Sie für das Komma einen \textbf{Punkt} verwenden. 
+\item Wenn Sie die \textbf{Reihenfolge von Berechnungen} beeinflussen wollen, können Sie wie in der Mathematik \textbf{runde Klammern} verwenden.
+\item Im Gegensatz zur Mathematik müssen alle \textbf{arithmetischen Operatoren} immer angegeben werden. Ein fehlender arithmetischer Operator, wie im folgenden Code,
+	
+\begin{lstlisting}[language={python3}]
+import random as r
+
+x = r.randrange(1, 11)
+ergebnis = 4x
+\end{lstlisting}
+
+führt zu einem \textbf{Fehler}.
+
+\end{itemize}
+
+\end{important}
+
+Berechnungen sind Programmierbefehle, die in Python eine eigene Kategorie bilden.
+
+\begin{definition}[Arithmetischer Ausdruck]
+	Rechnungen mit \textbf{arithmetischen Operatoren} werden arithmetische Ausdrücke (engl. arithmetic expressions) genannt. Bei der Programmausführung werden arithmetische Ausdrücke stets von Python direkt \textbf{ausgewertet}. Dies bedeutet, Python ermittelt für den arithmetischen Ausdruck einen \textbf{Zahlenwert} (Integer oder Float).
+\end{definition}
+
+\begin{example}
+Schauen wir uns \lstinline[language={python3}]{(163 * 3) - (77 * 4)} im Detail an:
+$$
+\begin{array}[t]{c}
+\begin{array}[t]{cccccccccccc} 
+\underbrace{\textrm{\texttt{(}}}_{\textrm{Klammer}} & \underbrace{\textrm{\texttt{163}}}_{\textrm{Wert}} & \underbrace{\textrm{\texttt{*}}}_{\textrm{arith. Op.}} & \underbrace{\textrm{\texttt{3}}}_{\textrm{Wert}} & \underbrace{\textrm{\texttt{)}}}_{\textrm{Klammer}} & \underbrace{\textrm{\texttt{-}}}_{\textrm{arith. Op.}} & \underbrace{\textrm{\texttt{(}}}_{\textrm{Klammer}} & \underbrace{\textrm{\texttt{77}}}_{\textrm{Wert}} & \underbrace{\textrm{\texttt{*}}}_{\textrm{arith. Op.}} & \underbrace{\textrm{\texttt{4}}}_{\textrm{Wert}} & \underbrace{\textrm{\texttt{)}}}_{\textrm{Klammer}}
+\end{array} \\
+\underbrace{\hspace{14cm}}_{\textrm{arithmetischer Ausdruck}}
+\end{array}
+$$
+Mit arith. Op. ist der Begriff arithmetischer Operator gemeint.
+
+\end{example}
